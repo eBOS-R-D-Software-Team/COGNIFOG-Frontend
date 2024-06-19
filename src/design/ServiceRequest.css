@@ -1,0 +1,23 @@
+/* src/pages/ServiceRequest.css */
+.service-request {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .application-section,
+  .component-section,
+  .channels-section {
+    margin-bottom: 20px;
+  }
+  
+  .application-section h4,
+  .component-section h4,
+  .channels-section h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .service-request .ant-btn-primary {
+    float: right; /* Ensure this is aligned to the right */
+  }

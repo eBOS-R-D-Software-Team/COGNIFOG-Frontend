@@ -1,0 +1,39 @@
+/* src/components/Navbar.css */
+.navbar {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .navbar .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .logo img {
+    width: 40px;
+    margin-right: 10px;
+  }
+  
+  .navbar .search-bar {
+    flex-grow: 1;
+    margin-left: 20px;
+  }
+  
+  .navbar .menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .menu .ant-menu-horizontal {
+    border-bottom: none;
+  }
+  

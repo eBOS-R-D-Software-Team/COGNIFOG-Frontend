@@ -1,0 +1,29 @@
+/* src/components/Application.css */
+.application-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .application-section h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .form-item {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .form-item:last-child {
+    margin-right: 0;
+  }
+  
