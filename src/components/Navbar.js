@@ -10,17 +10,17 @@ const menuItems = [
   {
     key: 'settings',
     icon: <SettingOutlined />,
-    label: 'Settings',
+    label: '',
   },
   {
     key: 'notifications',
     icon: <BellOutlined />,
-    label: 'Notifications',
+    label: '',
   },
   {
     key: 'user',
     icon: <UserOutlined />,
-    label: 'User',
+    label: '',
   },
 ];
 
@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="logo">
-        <img src="/logo.png" alt="Logo" />
+        <img src={require('../images/logo.png')} alt="Logo" />
         <h2 className="m-0">COGNIFOG</h2>
       </div>
       <div className="search-bar">

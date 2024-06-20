@@ -1,21 +1,29 @@
 /* src/components/ComponentSection.css */
 .component-section {
-  background-color: #fff;
+  background-color: #ebedf2;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  position: relative; /* Ensure relative positioning */
+  position: relative;
+  color: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+
+.component-section:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .component-section h4 {
   font-size: 18px;
   margin-bottom: 20px;
-  color: #007bff;
+  color: #2E2C74;
+  font-weight: bold;
 }
 
 .job-section {
-  background-color: #f8f9fa;
+  background-color: #ededed;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-radius: 8px;
   margin-top: 20px;
@@ -25,18 +33,26 @@
 .job-section h5 {
   font-size: 16px;
   margin-bottom: 20px;
-  color: #007bff;
+  color: #2E2C74;
+  font-weight: bold;
 }
 
 .upload-button {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #1a73e8;
+  color: #ffffff;
   border: none;
   padding: 5px 15px;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.upload-button:hover {
+  background-color: #155ab6;
+  color: #ffffff;
 }
 
 .form-row {
@@ -62,9 +78,17 @@
 
 .add-job-button,
 .add-component-button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #1a73e8;
+  color: #ffffff;
   border: none;
   padding: 5px 15px;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.add-job-button:hover,
+.add-component-button:hover {
+  background-color: #155ab6;
+  color: #ffffff;
 }

@@ -1,29 +1,57 @@
 /* src/components/Application.css */
 .application-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  .application-section h4 {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .form-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .form-item {
-    flex: 1;
-    margin-right: 20px;
-  }
-  
-  .form-item:last-child {
-    margin-right: 0;
-  }
-  
+  background-color: #ebedf2;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  color: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+
+.application-section:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.application-section h4 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #2E2C74;
+  font-weight: bold;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-item {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.form-item:last-child {
+  margin-right: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.add-application-button {
+  background-color: #1a73e8;
+  color: #ffffff;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.add-application-button:hover {
+  background-color: #155ab6;
+  color: #ffffff;
+}

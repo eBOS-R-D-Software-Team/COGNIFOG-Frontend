@@ -42,7 +42,7 @@ const menuItems = [
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <Menu mode="vertical" style={{ height: '100%', borderRight: 0 }} items={menuItems} />
+      <Menu mode="vertical" style={{ height: '100%', borderRight: 0, backgroundColor:'#2E2C74'}} items={menuItems} />
     </div>
   );
 };
