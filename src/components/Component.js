@@ -1,48 +1,43 @@
 // src/components/ComponentSection.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
+import { useDispatch } from 'react-redux';
+import { createComponent } from '../actions/componentActions'; // Import action
 import './Component.css';
 
-const ComponentSection = () => {
+const ComponentSection = ({ applicationId, setComponentId }) => {
+  const dispatch = useDispatch();
+  const [componentData, setComponentData] = useState({
+    componentName: '',
+  });
+
+  const handleComponentSubmit = () => {
+    // Only component name should be in the payload
+    const payload = {
+      name: componentData.componentName, // Make sure the key is `name` to match the backend
+    };
+  
+    // Dispatch with applicationId in the URL
+    dispatch(createComponent({ applicationId, componentData: payload })).then((response) => {
+      const newComponentId = response.payload.id;
+      setComponentId(newComponentId); // Pass componentId to the parent for job creation
+    });
+  };
+  
+
   return (
     <div className="component-section">
       <h4>Component</h4>
-      <Form layout="vertical">
-        <Form.Item label="Name">
-          <Input value="Consumer" />
+      <Form layout="vertical" onFinish={handleComponentSubmit}>
+        <Form.Item label="Name" name="componentName">
+          <Input
+            value={componentData.componentName}
+            onChange={(e) => setComponentData({ ...componentData, componentName: e.target.value })}
+          />
         </Form.Item>
-        <div className="job-section">
-          <h5>Job</h5>
-          <Button className="upload-button">Upload file</Button>
-          <Form.Item label="Manifest">
-            <Input />
-          </Form.Item>
-          <div className="form-row">
-            <Form.Item label="Execution time*" className="form-item">
-              <Input value="500 ms" />
-            </Form.Item>
-            <Form.Item label="Frequency*" className="form-item">
-              <Input value="1" />
-            </Form.Item>
-          </div>
-          <div className="form-row">
-            <Form.Item label="CPU" className="form-item">
-              <Input value="250m" />
-            </Form.Item>
-            <Form.Item label="Memory" className="form-item">
-              <Input value="64Mi" />
-            </Form.Item>
-          </div>
-          <Form.Item label="Service Name">
-            <Input value="service" />
-          </Form.Item>
-          <div className="button-container">
-            <Button type="primary" className="add-job-button">Add New Job</Button>
-          </div>
-        </div>
-        <div className="button-container">
-          <Button type="primary" className="add-component-button">Add New Component</Button>
-        </div>
+        <Button type="primary" htmlType="submit" className="add-component-button">
+          Add New Component
+        </Button>
       </Form>
     </div>
   );

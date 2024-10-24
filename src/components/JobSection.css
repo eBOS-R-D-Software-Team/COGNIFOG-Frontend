@@ -1,0 +1,75 @@
+/* src/components/JobSection.css */
+.job-section {
+    background-color: #f7f8fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: relative;
+    color: #2E2C74;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .job-section:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .job-section h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #2E2C74;
+    font-weight: bold;
+  }
+  
+  .upload-manifest-button {
+    background-color: #1a73e8;
+    color: #ffffff;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+  }
+  
+  .upload-manifest-button:hover {
+    background-color: #155ab6;
+    color: #ffffff;
+  }
+  
+  .job-form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .job-form-item {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .job-form-item:last-child {
+    margin-right: 0;
+  }
+  
+  .job-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .add-job-button {
+    background-color: #1a73e8;
+    color: #ffffff;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .add-job-button:hover {
+    background-color: #155ab6;
+    color: #ffffff;
+  }
+  
