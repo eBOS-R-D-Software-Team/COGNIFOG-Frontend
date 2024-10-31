@@ -1,6 +1,6 @@
 // src/slices/applicationSlice.js
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchApplications, createApplication } from '../actions/applicationactions';
+import { fetchApplications, createApplication, getApplicationInformation } from '../actions/applicationactions';
 
 const applicationSlice = createSlice({
   name: 'applications',
@@ -23,6 +23,19 @@ const applicationSlice = createSlice({
         state.applications = action.payload; // Populate applications array
       })
       .addCase(fetchApplications.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Failed to fetch applications';
+      })
+
+      // Fetch application inofrmation
+      .addCase(getApplicationInformation.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getApplicationInformation.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.applications = action.payload; // Populate applications array
+      })
+      .addCase(getApplicationInformation.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload || 'Failed to fetch applications';
       })

@@ -15,6 +15,18 @@ export const fetchApplications = createAsyncThunk(
   }
 );
 
+// Fetch an application information from the backend with an ID parameter
+export const getApplicationInformation = createAsyncThunk(
+  'applications/getApplicationInformation',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/applications/getApplicationInformation/${id}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 // Create a new application
 export const createApplication = createAsyncThunk(

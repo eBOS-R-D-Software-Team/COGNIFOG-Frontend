@@ -5,11 +5,23 @@ import Application from '../components/Application';
 import ComponentSection from '../components/Component';
 import JobSection from '../components/JobSection';
 import '../design/ServiceRequest.css';
+import { getApplicationInformation } from '../actions/applicationactions';
+import { useDispatch } from 'react-redux';
 
 const ServiceRequest = () => {
   const [applicationId, setApplicationId] = useState(null); // To capture the applicationId
   const [componentId, setComponentId] = useState(null);     // To capture the componentId
 
+  const dispatch = useDispatch();
+
+    // Handle form submission
+    const handleSubmit = () => {
+     
+    
+      dispatch(getApplicationInformation(applicationId)).then((response) => {
+       console.log("submitted all application information, response: ", response);
+      });
+    };
   return (
     <div className="service-request p-3 form-container">
       <h3>Service Request</h3>
@@ -19,7 +31,7 @@ const ServiceRequest = () => {
       )}
       {componentId && <JobSection componentId={componentId} />}
       <div className="button-container">
-        <Button type="primary" className="button-primary">Submit All</Button>
+        <Button onClick={handleSubmit} type="primary" className="button-primary">Submit All</Button>
       </div>
     </div>
   );
