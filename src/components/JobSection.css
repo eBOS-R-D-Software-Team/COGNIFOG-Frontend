@@ -8,6 +8,7 @@
     position: relative;
     color: #2E2C74;
     transition: box-shadow 0.3s ease;
+    margin-top: 67px;
   }
   
   .job-section:hover {

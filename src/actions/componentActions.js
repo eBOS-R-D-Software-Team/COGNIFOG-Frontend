@@ -2,24 +2,47 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Create a new component
 export const createComponent = createAsyncThunk(
   'components/createComponent',
-  async ({ applicationId, componentData }, { rejectWithValue }) => {
+  async ({ componentId, payload }, { rejectWithValue }) => {
     try {
-      // Construct the URL correctly with the applicationId
+      console.log('Creating component with componentId:', componentId); // Debug log
+      console.log('Payload:', payload); // Debug log
+
       const response = await axios.post(
-        `http://localhost:3000/api/components/${applicationId}/components`,
-        componentData,
+        `http://localhost:3000/api/components/${componentId}/components`, 
+        payload, 
         {
           headers: {
-            'Content-Type': 'application/json', // Make sure it's JSON
-          }
+            'Content-Type': 'application/json',
+          },
         }
       );
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      if (error.response) {
+        console.error('Error response from server:', error.response.data);
+        return rejectWithValue(error.response.data); // Returns server-specific error
+      } else {
+        console.error('Error message:', error.message);
+        return rejectWithValue(error.message); // Generic error message
+      }
+    }
+  }
+);
+
+export const fetchComponents = createAsyncThunk(
+  'components/fetchComponents',
+  async (applicationId, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/applications/${applicationId}/components`);
+      return response.data; // Return the list of components
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data); // Return server error
+      } else {
+        return rejectWithValue(error.message); // Return generic error message
+      }
     }
   }
 );

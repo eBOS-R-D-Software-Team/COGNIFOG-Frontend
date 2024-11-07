@@ -1,14 +1,12 @@
-// src/components/JobSection.js
 import React, { useState } from 'react';
-import { Form, Input, Button, Upload } from 'antd';
+import { Form, Input, Button, Upload, notification } from 'antd';
 import { useDispatch } from 'react-redux';
-import { createJob } from '../actions/jobActions'; // Import the action to create a job
+import { createJob } from '../actions/jobActions';
 import { UploadOutlined } from '@ant-design/icons';
 import './JobSection.css';
 
 const JobSection = ({ componentId }) => {
   const dispatch = useDispatch();
-  
   const [jobData, setJobData] = useState({
     executionTime: '',
     frequency: '',
@@ -17,6 +15,7 @@ const JobSection = ({ componentId }) => {
     serviceName: '',
   });
   const [manifestFile, setManifestFile] = useState(null);
+  const [form] = Form.useForm(); // Ant Design's form instance for resetting
 
   // Handle file selection from the upload
   const handleFileChange = (info) => {
@@ -35,10 +34,27 @@ const JobSection = ({ componentId }) => {
 
     // Dispatch the job creation action with formData and componentId
     dispatch(createJob({ formData, componentId }))
-      .then((response) => {
-        console.log('Job created successfully:', response);
+      .then(() => {
+        notification.success({
+          message: 'Job Added Successfully',
+          description: 'The job has been added to the component.',
+        });
+        // Reset form fields and file input after successful submission
+        setJobData({
+          executionTime: '',
+          frequency: '',
+          cpu: '',
+          memory: '',
+          serviceName: '',
+        });
+        setManifestFile(null);
+        form.resetFields(); // Reset form fields
       })
       .catch((error) => {
+        notification.error({
+          message: 'Error Adding Job',
+          description: 'There was an error adding the job. Please try again.',
+        });
         console.error('Error creating job:', error);
       });
   };
@@ -55,11 +71,15 @@ const JobSection = ({ componentId }) => {
     <div className="job-section">
       <h5>Job</h5>
       {/* Upload component for manifest file */}
-      <Upload beforeUpload={() => false} onChange={handleFileChange}>
+      <Upload
+        beforeUpload={() => false}
+        onChange={handleFileChange}
+        fileList={manifestFile ? [manifestFile] : []} // Bind fileList to clear file input
+      >
         <Button icon={<UploadOutlined />}>Upload Manifest</Button>
       </Upload>
       {/* Form for job details */}
-      <Form layout="vertical" onFinish={handleJobSubmit}>
+      <Form layout="vertical" onFinish={handleJobSubmit} form={form}>
         <Form.Item label="Execution time*" name="executionTime" required>
           <Input value={jobData.executionTime} onChange={(e) => handleChange('executionTime', e.target.value)} />
         </Form.Item>

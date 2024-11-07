@@ -11,12 +11,12 @@ const Application = ({ setApplicationId }) => {
 
   // Initial form state for all inputs
   const [applicationData, setApplicationData] = useState({
-    applicationName: 'hello-world-multipart',
-    description: 'Flood in Paris',
-    trial: 'THALES',
-    responsible: 'Kyriaki Psara',
-    contact: 'KyriakiP@ebos.com.cy',
-    type: 'Create',
+    applicationName: '',
+    description: '',
+    trial: '',
+    responsible: '',
+    contact: '',
+    type: '',
     date: null,
   });
 
