@@ -10,7 +10,7 @@ export const createComponent = createAsyncThunk(
       console.log('Payload:', payload); // Debug log
 
       const response = await axios.post(
-        `http://localhost:3000/api/components/${componentId}/components`, 
+        process.env.REACT_APP_PRODUCTION_URL + `components/${componentId}/components`, 
         payload, 
         {
           headers: {
@@ -35,7 +35,7 @@ export const fetchComponents = createAsyncThunk(
   'components/fetchComponents',
   async (applicationId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/applications/${applicationId}/components`);
+      const response = await axios.get(process.env.REACT_APP_PRODUCTION_URL + `components/${applicationId}/components`);
       return response.data; // Return the list of components
     } catch (error) {
       if (error.response && error.response.data) {

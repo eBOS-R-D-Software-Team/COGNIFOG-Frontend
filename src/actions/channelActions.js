@@ -7,7 +7,7 @@ export const createChannel = createAsyncThunk(
   'channels/createChannel',
   async ({ incomingComponentId, outgoingComponentId }, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://localhost:3000/api/channels', {
+      const response = await axios.post(process.env.REACT_APP_PRODUCTION_URL + 'channels', {
         incomingComponentId,
         outgoingComponentId,
       });
@@ -27,7 +27,7 @@ export const getChannels = createAsyncThunk(
   'channels/getChannels',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:3000/api/channels');
+      const response = await axios.get(process.env.REACT_APP_PRODUCTION_URL + 'channels');
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {
@@ -44,7 +44,7 @@ export const getChannelById = createAsyncThunk(
   'channels/getChannelById',
   async (channelId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/channels/${channelId}`);
+      const response = await axios.get(process.env.REACT_APP_PRODUCTION_URL + `channels/${channelId}`);
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {
@@ -61,7 +61,7 @@ export const updateChannel = createAsyncThunk(
   'channels/updateChannel',
   async ({ channelId, incomingComponentId, outgoingComponentId }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`http://localhost:3000/api/channels/${channelId}`, {
+      const response = await axios.put(process.env.REACT_APP_PRODUCTION_URL + `channels/${channelId}`, {
         incomingComponentId,
         outgoingComponentId,
       });
@@ -81,7 +81,7 @@ export const deleteChannel = createAsyncThunk(
   'channels/deleteChannel',
   async (channelId, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:3000/api/channels/${channelId}`);
+      await axios.delete(process.env.REACT_APP_PRODUCTION_URL + `channels/${channelId}`);
       return { id: channelId };
     } catch (error) {
       if (error.response && error.response.data) {

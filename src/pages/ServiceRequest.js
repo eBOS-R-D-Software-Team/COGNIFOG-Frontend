@@ -9,7 +9,7 @@ import JobSection from '../components/JobSection';
 import ChannelsSection from '../components/Channels';
 import '../design/ServiceRequest.css';
 import { fetchComponents } from '../actions/componentActions';
-
+import { getApplicationInformation } from '../actions/applicationactions';
 const ServiceRequest = () => {
   const { applicationId: urlApplicationId } = useParams(); // Retrieve applicationId from URL
   const [applicationId, setApplicationId] = useState(urlApplicationId || null); // Allow capturing new application ID
@@ -28,8 +28,10 @@ const ServiceRequest = () => {
 
   // Handle form submission
   const handleSubmit = () => {
-    console.log("Submitting application with ID:", applicationId); // Check if applicationId is correct
-  };
+
+    dispatch(getApplicationInformation(applicationId)).then((response) => {
+      console.log("submitted all application information, response: ", response);
+     });  };
 
   return (
     <div className="service-request p-3 form-container">

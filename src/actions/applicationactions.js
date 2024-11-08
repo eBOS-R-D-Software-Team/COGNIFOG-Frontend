@@ -7,7 +7,7 @@ export const fetchApplications = createAsyncThunk(
   'applications/fetchApplications',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:3000/api/applications');
+      const response = await axios.get(process.env.REACT_APP_PRODUCTION_URL + 'applications');
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -20,7 +20,7 @@ export const getApplicationInformation = createAsyncThunk(
   'applications/getApplicationInformation',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/applications/getApplicationInformation/${id}`);
+      const response = await axios.get(process.env.REACT_APP_PRODUCTION_URL + `applications/getApplicationInformation/${id}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -33,8 +33,9 @@ export const createApplication = createAsyncThunk(
     'applications/createApplication',
     async (applicationData, { rejectWithValue }) => {
       try {
+        console.log("process.env.PRODUCTION_URL: ", process.env.REACT_APP_PRODUCTION_URL);
         console.log('Payload being sent to API:', applicationData);  // Log payload
-        const response = await axios.post('http://localhost:3000/api/applications/createApp', applicationData);
+        const response = await axios.post(process.env.REACT_APP_PRODUCTION_URL + 'applications/createApp', applicationData);
         console.log('Response from API:', response.data);  // Log successful response
         return response.data;
       } catch (error) {
