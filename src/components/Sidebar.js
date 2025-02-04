@@ -15,7 +15,7 @@ const menuItems = [
   {
     key: 'home',
     icon: <HomeOutlined />,
-    label: <Link to="/">Home</Link>,
+    label: <Link to="/home">Home</Link>,
   },
   {
     key: 'model',

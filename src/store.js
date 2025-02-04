@@ -5,6 +5,7 @@ import applicationReducer from './reducers/applicationReducer';
 import componentReducer from './slices/componentSlice';
 import jobReducer from './slices/jobSlice'; 
 import channelReducer from './slices/channelSlice';
+import authReducer from "./slices/authSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     components: componentReducer,
     jobs: jobReducer,
     channels: channelReducer,
+    authentication : authReducer,
     
     // Add other reducers here
   },
