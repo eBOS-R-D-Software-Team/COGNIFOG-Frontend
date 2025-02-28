@@ -1,6 +1,5 @@
-// src/components/Component.js
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { createComponent } from '../actions/componentActions';
 
@@ -16,9 +15,12 @@ const ComponentSection = ({ applicationId, setComponentId }) => {
         const newComponentId = response.payload?.id;
         if (newComponentId) {
           setComponentId(newComponentId); // Pass componentId to display JobSection
+          message.success('Component added successfully!', 3);
         }
       })
-      .catch((error) => console.error("Error creating component:", error));
+      .catch(() => {
+        message.error('Failed to add component. Please try again.', 3);
+      });
   };
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; 
-import { Form, Select, Input, DatePicker, Button } from 'antd';
+import { Form, Select, Input, DatePicker, Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { createApplication } from '../actions/applicationactions';
 import './Application.css';
@@ -39,6 +39,12 @@ const Application = ({ setApplicationId }) => {
       // Assuming the API response contains the new applicationId
       const applicationId = response.payload.id;
       setApplicationId(applicationId); // Pass applicationId to the parent or component state
+      
+      // Show success alert
+      message.success('Application added successfully!', 3);
+    }).catch(() => {
+      // Show error alert
+      message.error('Failed to add application. Please try again.', 3);
     });
   };
 
