@@ -26,7 +26,6 @@ const applicationSlice = createSlice({
         state.error = action.payload || 'Failed to fetch applications';
       })
       // Fetch All Applications with Details
-      builder
       .addCase(fetchAllApplicationsDetails.pending, (state) => {
         state.status = "loading";
       })
