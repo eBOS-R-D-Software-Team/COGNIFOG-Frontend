@@ -12,14 +12,13 @@ const ComponentSection = ({ applicationId, setSelectedComponentId, setIsComponen
   const [selectedComponent, setSelectedComponent] = useState(null);
 
   const handleComponentSubmit = () => {
-    if (selectedComponent) {
-      setSelectedComponentId(selectedComponent);
-      setIsComponentsSubmitted(true);
+    if (!componentName.trim()) {
+      notification.warning({ message: 'Component Name Required', description: 'Please enter a component name.' });
       return;
     }
-  
+
     const payload = { name: componentName };
-    dispatch(createComponent({ applicationId, payload })) // ✅ Correct parameter
+    dispatch(createComponent({ applicationId, payload }))
       .then((response) => {
         const newComponentId = response.payload?.id;
         if (newComponentId) {
@@ -29,6 +28,7 @@ const ComponentSection = ({ applicationId, setSelectedComponentId, setIsComponen
             message: 'Component Added Successfully',
             description: 'The component has been successfully created.',
           });
+          setComponentName('');
         }
       })
       .catch(() => {
@@ -38,7 +38,6 @@ const ComponentSection = ({ applicationId, setSelectedComponentId, setIsComponen
         });
       });
   };
-  
 
   return (
     <div className="component-section">
@@ -54,6 +53,7 @@ const ComponentSection = ({ applicationId, setSelectedComponentId, setIsComponen
             setIsComponentsSubmitted(true);
           }}
           style={{ width: '100%', marginBottom: '10px' }}
+          value={selectedComponent}
         >
           {components.map((comp) => (
             <Option key={comp.id} value={comp.id}>
@@ -69,12 +69,15 @@ const ComponentSection = ({ applicationId, setSelectedComponentId, setIsComponen
           <Input
             value={componentName}
             onChange={(e) => setComponentName(e.target.value)}
-            disabled={selectedComponent} 
+            disabled={!!selectedComponent} // Disable if an existing component is selected
+            placeholder="Enter a new component name"
           />
         </Form.Item>
-        <Button type="primary" htmlType="submit">
-          {selectedComponent ? 'Use Selected Component' : 'Add Component'}
-        </Button>
+        {!selectedComponent && (
+          <Button type="primary" htmlType="submit">
+            Add Component
+          </Button>
+        )}
       </Form>
     </div>
   );
