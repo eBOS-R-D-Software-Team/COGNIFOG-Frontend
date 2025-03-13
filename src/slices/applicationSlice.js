@@ -26,19 +26,18 @@ const applicationSlice = createSlice({
         state.error = action.payload || 'Failed to fetch applications';
       })
       // Fetch All Applications with Details
+      builder
       .addCase(fetchAllApplicationsDetails.pending, (state) => {
-        console.log("🔄 Fetching All Application Details...");
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(fetchAllApplicationsDetails.fulfilled, (state, action) => {
-        console.log("✅ Application Details Loaded:", action.payload);
-        state.status = 'succeeded';
-        state.applications = action.payload;
+        state.status = "succeeded";
+        state.applications = Array.isArray(action.payload) ? action.payload : []; // ✅ Ensure it's always an array
       })
       .addCase(fetchAllApplicationsDetails.rejected, (state, action) => {
-        console.error("❌ Fetch Application Details Failed:", action.payload);
-        state.status = 'failed';
-        state.error = action.payload || 'Failed to fetch application details';
+        state.status = "failed";
+        state.error = action.payload || "Failed to fetch application details";
+        state.applications = []; // ✅ Ensure applications is reset to an empty array
       })
       // Fetch Single Application
       .addCase(getApplicationInformation.pending, (state) => {
