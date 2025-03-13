@@ -1,7 +1,7 @@
 // src/store.js
 import { configureStore } from '@reduxjs/toolkit';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import applicationReducer from './reducers/applicationReducer';
+import applicationReducer from './slices/applicationSlice';
 import componentReducer from './slices/componentSlice';
 import jobReducer from './slices/jobSlice'; 
 import channelReducer from './slices/channelSlice';

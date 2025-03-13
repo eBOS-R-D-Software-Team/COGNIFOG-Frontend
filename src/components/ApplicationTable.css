@@ -1,0 +1,45 @@
+/* styles/ApplicationTable.css */
+.application-table-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+  }
+  
+  .table-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #444;
+    padding-bottom: 10px;
+  }
+  
+  .table-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .details-btn {
+    background-color: #1890ff !important;
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .details-btn:hover {
+    background-color: #0056b3 !important;
+  }
+  
+  .update-btn {
+    background-color: #ffc107 !important;
+    border: none;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .update-btn:hover {
+    background-color: #d39e00 !important;
+  }
+  

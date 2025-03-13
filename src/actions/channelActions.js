@@ -5,9 +5,10 @@ import axios from 'axios';
 // Create a new channel
 export const createChannel = createAsyncThunk(
   'channels/createChannel',
-  async ({ incomingComponentId, outgoingComponentId }, { rejectWithValue }) => {
+  async ({ applicationId ,incomingComponentId, outgoingComponentId }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(process.env.REACT_APP_PRODUCTION_URL + 'channels', {
+      const response = await axios.post(process.env.REACT_APP_DEV_URL + 'channels/create', {
+        applicationId, // ✅ Added applicationId
         incomingComponentId,
         outgoingComponentId,
       });
@@ -27,7 +28,7 @@ export const getChannels = createAsyncThunk(
   'channels/getChannels',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(process.env.REACT_APP_PRODUCTION_URL + 'channels');
+      const response = await axios.get(process.env.REACT_APP_DEV_URL + 'channels');
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {
@@ -44,7 +45,7 @@ export const getChannelById = createAsyncThunk(
   'channels/getChannelById',
   async (channelId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(process.env.REACT_APP_PRODUCTION_URL + `channels/${channelId}`);
+      const response = await axios.get(process.env.REACT_APP_DEV_URL + `channels/${channelId}`);
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {
@@ -61,7 +62,7 @@ export const updateChannel = createAsyncThunk(
   'channels/updateChannel',
   async ({ channelId, incomingComponentId, outgoingComponentId }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(process.env.REACT_APP_PRODUCTION_URL + `channels/${channelId}`, {
+      const response = await axios.put(process.env.REACT_APP_DEV_URL + `channels/${channelId}`, {
         incomingComponentId,
         outgoingComponentId,
       });
@@ -81,7 +82,7 @@ export const deleteChannel = createAsyncThunk(
   'channels/deleteChannel',
   async (channelId, { rejectWithValue }) => {
     try {
-      await axios.delete(process.env.REACT_APP_PRODUCTION_URL + `channels/${channelId}`);
+      await axios.delete(process.env.REACT_APP_DEV_URL + `channels/${channelId}`);
       return { id: channelId };
     } catch (error) {
       if (error.response && error.response.data) {

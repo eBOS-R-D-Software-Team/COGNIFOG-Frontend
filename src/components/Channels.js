@@ -1,13 +1,12 @@
-// src/components/ChannelsSection.js
 import React, { useEffect, useState } from 'react';
-import { Form, Select, Button } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { Form, Select, Button, notification } from 'antd';
+import { useDispatch } from 'react-redux';
 import { createChannel } from '../actions/channelActions'; // Import the action to create a channel
 import './Channels.css';
 
 const { Option } = Select;
 
-const ChannelsSection = ({ components }) => {
+const ChannelsSection = ({ components, setIsChannelsSubmitted, applicationId }) => {
   const dispatch = useDispatch();
   const [incomingComponentId, setIncomingComponentId] = useState(null);
   const [outgoingComponentId, setOutgoingComponentId] = useState(null);
@@ -21,10 +20,38 @@ const ChannelsSection = ({ components }) => {
   }, [components, selectedComponentIndex]);
 
   const handleCreateChannel = () => {
-    if (incomingComponentId && outgoingComponentId) {
-      dispatch(createChannel({ incomingComponentId, outgoingComponentId }));
+    console.log("Creating Channel with:", applicationId, incomingComponentId, outgoingComponentId); // 🔍 Debugging log
+    if (incomingComponentId && outgoingComponentId && applicationId) {
+      dispatch(createChannel({ 
+        applicationId,  
+        incomingComponentId, 
+        outgoingComponentId 
+      }))
+        .then(() => {
+          console.log("Channel successfully created!"); // ✅ Confirm API success
+          setIsChannelsSubmitted(true); 
+          notification.success({
+            message: 'Channel Added Successfully',
+            description: 'The channel has been successfully created.',
+          });
+        })
+        .catch(error => {
+          console.error("Error creating channel:", error); // ❌ Debug any failures
+          notification.error({
+            message: 'Failed to Add Channel',
+            description: error.message || 'Something went wrong!',
+          });
+        });
+    } else {
+      console.warn("Missing values:", { applicationId, incomingComponentId, outgoingComponentId }); // 🔍 Check for missing values
+      notification.warning({
+        message: 'Missing Required Fields',
+        description: 'Please select both incoming and outgoing components.',
+      });
     }
   };
+  
+
 
   const handleIndexChange = () => {
     const newIndex = (selectedComponentIndex + 2) % components.length;

@@ -20,7 +20,7 @@ const menuItems = [
   {
     key: 'model',
     icon: <BarChartOutlined />,
-    label: <Link to="/model">Model Visualization</Link>,
+    label: <Link to="/applications">Applications Visualization</Link>,
   },
   {
     key: 'data',

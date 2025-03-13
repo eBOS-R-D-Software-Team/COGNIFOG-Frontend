@@ -16,7 +16,7 @@ export const createJob = createAsyncThunk(
 
       // POST to the URL with the componentId included in the route
       const response = await axios.post(
-        process.env.REACT_APP_PRODUCTION_URL + `jobs/${componentId}/jobs`, // componentId is in the URL now
+        process.env.REACT_APP_DEV_URL + `jobs/${componentId}/jobs`, // componentId is in the URL now
         formData,
         {
           headers: {

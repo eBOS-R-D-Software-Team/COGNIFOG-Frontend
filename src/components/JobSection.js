@@ -5,7 +5,7 @@ import { createJob } from '../actions/jobActions';
 import { UploadOutlined } from '@ant-design/icons';
 import './JobSection.css';
 
-const JobSection = ({ componentId }) => {
+const JobSection = ({ componentId, setIsJobsSubmitted }) => {
   const dispatch = useDispatch();
   const [jobData, setJobData] = useState({
     executionTime: '',
@@ -15,31 +15,34 @@ const JobSection = ({ componentId }) => {
     serviceName: '',
   });
   const [manifestFile, setManifestFile] = useState(null);
-  const [form] = Form.useForm(); // Ant Design's form instance for resetting
+  const [form] = Form.useForm(); 
 
-  // Handle file selection from the upload
+  if (!componentId) {
+    return <p style={{ color: 'red' }}>Please select or add a component first.</p>;
+  }
+
   const handleFileChange = (info) => {
-    setManifestFile(info.file); // Store the file for form submission
+    setManifestFile(info.file);
   };
 
-  // Handle form submission for the job
   const handleJobSubmit = () => {
     const formData = new FormData();
-    formData.append('manifest', manifestFile); // Append file
+    formData.append('manifest', manifestFile);
     formData.append('executionTime', jobData.executionTime);
     formData.append('frequency', jobData.frequency);
     formData.append('cpu', jobData.cpu);
     formData.append('memory', jobData.memory);
     formData.append('serviceName', jobData.serviceName);
 
-    // Dispatch the job creation action with formData and componentId
     dispatch(createJob({ formData, componentId }))
       .then(() => {
+        setIsJobsSubmitted(true);
         notification.success({
           message: 'Job Added Successfully',
-          description: 'The job has been added to the component.',
+          description: 'The job has been added to the selected component.',
         });
-        // Reset form fields and file input after successful submission
+
+        // Reset form after submission
         setJobData({
           executionTime: '',
           frequency: '',
@@ -48,42 +51,35 @@ const JobSection = ({ componentId }) => {
           serviceName: '',
         });
         setManifestFile(null);
-        form.resetFields(); // Reset form fields
+        form.resetFields();
       })
-      .catch((error) => {
+      .catch(() => {
         notification.error({
           message: 'Error Adding Job',
           description: 'There was an error adding the job. Please try again.',
         });
-        console.error('Error creating job:', error);
       });
   };
 
-  // Handle input field changes
   const handleChange = (field, value) => {
-    setJobData({
-      ...jobData,
-      [field]: value,
-    });
+    setJobData({ ...jobData, [field]: value });
   };
 
   return (
     <div className="job-section">
       <h5>Job</h5>
+
       {/* Upload component for manifest file */}
-      <Upload
-        beforeUpload={() => false}
-        onChange={handleFileChange}
-        fileList={manifestFile ? [manifestFile] : []} // Bind fileList to clear file input
-      >
+      <Upload beforeUpload={() => false} onChange={handleFileChange} fileList={manifestFile ? [manifestFile] : []}>
         <Button icon={<UploadOutlined />}>Upload Manifest</Button>
       </Upload>
+
       {/* Form for job details */}
       <Form layout="vertical" onFinish={handleJobSubmit} form={form}>
-        <Form.Item label="Execution time*" name="executionTime" required>
+        <Form.Item label="Execution Time*" name="executionTime" rules={[{ required: true, message: 'Required!' }]}>
           <Input value={jobData.executionTime} onChange={(e) => handleChange('executionTime', e.target.value)} />
         </Form.Item>
-        <Form.Item label="Frequency*" name="frequency" required>
+        <Form.Item label="Frequency*" name="frequency" rules={[{ required: true, message: 'Required!' }]}>
           <Input value={jobData.frequency} onChange={(e) => handleChange('frequency', e.target.value)} />
         </Form.Item>
         <Form.Item label="CPU" name="cpu">
@@ -95,10 +91,8 @@ const JobSection = ({ componentId }) => {
         <Form.Item label="Service Name" name="serviceName">
           <Input value={jobData.serviceName} onChange={(e) => handleChange('serviceName', e.target.value)} />
         </Form.Item>
-        {/* Submit button to add the job */}
-        <Button type="primary" htmlType="submit" className="add-job-button">
-          Add New Job
-        </Button>
+
+        <Button type="primary" htmlType="submit">Add New Job</Button>
       </Form>
     </div>
   );

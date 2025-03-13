@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; 
-import { Form, Select, Input, DatePicker, Button, message } from 'antd';
+import { Form, Select, Input, DatePicker, Button, notification } from 'antd';
 import { useDispatch } from 'react-redux';
 import { createApplication } from '../actions/applicationactions';
 import './Application.css';
@@ -40,11 +40,17 @@ const Application = ({ setApplicationId }) => {
       const applicationId = response.payload.id;
       setApplicationId(applicationId); // Pass applicationId to the parent or component state
       
-      // Show success alert
-      message.success('Application added successfully!', 3);
+      // Show success notification (matching JobSection style)
+      notification.success({
+        message: 'Application Added Successfully',
+        description: 'The application has been successfully created.',
+      });
     }).catch(() => {
-      // Show error alert
-      message.error('Failed to add application. Please try again.', 3);
+      // Show error notification (matching JobSection style)
+      notification.error({
+        message: 'Error Adding Application',
+        description: 'There was an error adding the application. Please try again.',
+      });
     });
   };
 
