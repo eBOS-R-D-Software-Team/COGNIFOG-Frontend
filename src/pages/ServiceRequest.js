@@ -93,12 +93,12 @@ const ServiceRequest = () => {
             </div>
           )}
 
-          {/* ✅ "Create New Application" Button (Resets everything) */}
-          <div className="button-container">
+           {/* ✅ "Create New Application" Button (Resets everything) */}
+          {isAllSubmitted && ( <div className="button-container">
             <Button onClick={handleCreateNewApplication} type="default" className="button-secondary">
               Create New Application
             </Button>
-          </div>
+          </div>)}
         </>
       )}
     </div>
