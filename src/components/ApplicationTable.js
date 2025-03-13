@@ -19,6 +19,11 @@ const ApplicationTable = () => {
   // ✅ Ensure applications is always an array
   const safeApplications = Array.isArray(applications) ? applications : [];
 
+  // ✅ Check if API returned an error object instead of applications array
+  if (!Array.isArray(applications)) {
+    console.warn("🚨 API returned an unexpected response:", applications);
+  }
+
   const columns = [
     {
       title: "Application Name",
