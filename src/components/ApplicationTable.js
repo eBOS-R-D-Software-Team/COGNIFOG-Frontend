@@ -14,6 +14,11 @@ const ApplicationTable = () => {
     dispatch(fetchAllApplicationsDetails());
   }, [dispatch]);
 
+  console.log("📢 Applications Data Before Rendering:", applications);
+
+  // ✅ Ensure applications is always an array
+  const safeApplications = Array.isArray(applications) ? applications : [];
+
   const columns = [
     {
       title: "Application Name",
@@ -24,18 +29,18 @@ const ApplicationTable = () => {
     {
       title: "Number of Components",
       key: "componentsCount",
-      render: (_, record) => record.components.length,
+      render: (_, record) => (record.components ? record.components.length : 0),
     },
     {
       title: "Total Jobs",
       key: "jobsCount",
       render: (_, record) =>
-        record.components.reduce((total, component) => total + component.jobs.length, 0),
+        record.components ? record.components.reduce((total, component) => total + (component.jobs ? component.jobs.length : 0), 0) : 0,
     },
     {
       title: "Total Channels",
       key: "channelsCount",
-      render: (_, record) => record.channels.length,
+      render: (_, record) => (record.channels ? record.channels.length : 0),
     },
     {
       title: "Actions",
@@ -67,7 +72,7 @@ const ApplicationTable = () => {
   return (
     <div className="application-table-container">
       <h2 className="table-title">📊 Application Overview</h2>
-      <Table columns={columns} dataSource={applications} rowKey="applicationId" pagination={{ pageSize: 5 }} />
+      <Table columns={columns} dataSource={safeApplications} rowKey="applicationId" pagination={{ pageSize: 5 }} />
     </div>
   );
 };
