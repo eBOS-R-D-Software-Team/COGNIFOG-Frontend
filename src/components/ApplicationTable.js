@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Table, Button, Spin, Alert } from "antd";
+import { Table, Button, Spin, Alert, Empty } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllApplicationsDetails } from "../actions/applicationactions";
 import { useNavigate } from "react-router-dom";
@@ -72,7 +72,20 @@ const ApplicationTable = () => {
   return (
     <div className="application-table-container">
       <h2 className="table-title">📊 Application Overview</h2>
-      <Table columns={columns} dataSource={safeApplications} rowKey="applicationId" pagination={{ pageSize: 5 }} />
+      
+      {/* ✅ Show "No Data" Message If Applications is Empty */}
+      {safeApplications.length === 0 ? (
+        <div className="no-data-container">
+          <Empty description="No Applications Available" />
+        </div>
+      ) : (
+        <Table 
+          columns={columns} 
+          dataSource={safeApplications} 
+          rowKey="applicationId" 
+          pagination={{ pageSize: 5 }} 
+        />
+      )}
     </div>
   );
 };
