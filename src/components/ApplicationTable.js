@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Table, Button, Spin, Alert, Empty } from "antd";
+import { Table, Button, Spin, Alert, Empty, Popconfirm } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllApplicationsDetails } from "../actions/applicationactions";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,11 @@ const ApplicationTable = () => {
     console.warn("🚨 API returned an unexpected response:", applications);
   }
 
+  const handleDelete = (id) => {
+    // Dispatch the delete action; you can add additional confirmation or error handling as needed
+   // dispatch(deleteApplication(id));
+  };
+
   const columns = [
     {
       title: "Application Name",
@@ -40,7 +45,9 @@ const ApplicationTable = () => {
       title: "Total Jobs",
       key: "jobsCount",
       render: (_, record) =>
-        record.components ? record.components.reduce((total, component) => total + (component.jobs ? component.jobs.length : 0), 0) : 0,
+        record.components
+          ? record.components.reduce((total, component) => total + (component.jobs ? component.jobs.length : 0), 0)
+          : 0,
     },
     {
       title: "Total Channels",
@@ -66,6 +73,16 @@ const ApplicationTable = () => {
           >
             Update
           </Button>
+          <Popconfirm
+            title="Are you sure to delete this application?"
+            onConfirm={() => handleDelete(record.applicationId)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button type="primary" danger className="delete-btn">
+              Delete
+            </Button>
+          </Popconfirm>
         </div>
       ),
     },

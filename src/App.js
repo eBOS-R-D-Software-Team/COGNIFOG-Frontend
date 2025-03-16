@@ -7,6 +7,8 @@ import ServiceRequest from "./pages/ServiceRequest";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MonitoringManager from "./pages/MonitoringManager";
+import ApplicationDetails from "./components/ApplicationDetails";
+
 import "./index.css";
 
 const AppContent = () => {
@@ -27,6 +29,7 @@ const AppContent = () => {
           <Route path="/" element={<Login />} />
           <Route path="/monitoring-manager" element={<MonitoringManager />} />
           <Route path="/applications" element={<ApplicationTable />} />
+          <Route path="/applications/:applicationId" element={<ApplicationDetails />} />
         </Routes>
       </div>
     </div>
