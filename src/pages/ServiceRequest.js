@@ -9,6 +9,7 @@ import ChannelsSection from '../components/Channels';
 import '../design/ServiceRequest.css';
 import { fetchComponents } from '../actions/componentActions';
 import { getApplicationInformation } from '../actions/applicationactions';
+import { useNavigate } from 'react-router-dom';
 
 const ServiceRequest = () => {
   const { applicationId: urlApplicationId } = useParams(); 
@@ -18,7 +19,8 @@ const ServiceRequest = () => {
   const [isComponentsSubmitted, setIsComponentsSubmitted] = useState(false);
   const [isJobsSubmitted, setIsJobsSubmitted] = useState(false);
   const [isChannelsSubmitted, setIsChannelsSubmitted] = useState(false);
-  
+  const history = useNavigate();
+
   const dispatch = useDispatch();
   const components = useSelector((state) => state.components.components);
 
@@ -37,6 +39,13 @@ const ServiceRequest = () => {
       notification.success({
         message: 'Application Submitted',
         description: 'All application information has been added successfully!',
+      });
+       // Navigate to the AnalysisResultTabs page, passing necessary data via location.state
+       history('/analysis-results/'+applicationId, {
+        applicationName: response.applicationName,
+        description: response.description? response.description : 'a new service request',
+        analysisResultId: response.analysisResult ? response.analysisResult.id : null,
+        applicationId,
       });
     });
   };
@@ -96,7 +105,7 @@ const ServiceRequest = () => {
            {/* ✅ "Create New Application" Button (Resets everything) */}
           {isAllSubmitted && ( <div className="button-container">
             <Button onClick={handleCreateNewApplication} type="default" className="button-secondary">
-              Create New Application
+             Or Create New Application
             </Button>
           </div>)}
         </>

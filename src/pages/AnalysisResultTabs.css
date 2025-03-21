@@ -1,0 +1,177 @@
+/* Main container for the analysis result tabs */
+.analysis-result-tabs-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Tab content area */
+  .tab-content {
+    min-height: 300px;
+    position: relative;
+    padding-bottom: 60px; /* extra space for buttons */
+  }
+  
+  /* Loader and waiting message */
+  .loading-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+  }
+  
+  .loading-animation p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #8c8c8c;
+  }
+  
+  /* Dataflow image styling - centered */
+  .dataflow-image {
+    max-width: 100%;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Button group styling - placed at bottom-right */
+  .button-group {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Header for Software and Hardware tabs */
+  .header-info {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 15px;
+  }
+  
+  .header-trial {
+    color: #000080;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .header-thales {
+    font-size: 18px;
+    margin-left: 15px;
+  }
+  
+  /* Description section styling */
+  .description-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .description-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .description-label {
+    color: #000080;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .description-value {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  /* Status section styling */
+  .status-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .status-text {
+    background-color: #000080;
+    color: #fff;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .status-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* Hardware tab - flex container for infrastructure card and image */
+  .hardware-flex-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Infrastructure card styling */
+  .infrastructure-card {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .infrastructure-title {
+    color: #000080;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Infrastructure table styling */
+  .infrastructure-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .infrastructure-table th {
+    background-color: #000080;
+    color: #fff;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .infrastructure-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Hardware image container */
+  .hardware-image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hardware-image {
+    max-width: 300px;
+    width: 100%;
+    border-radius: 4px;
+  }
+  

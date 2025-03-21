@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MonitoringManager from "./pages/MonitoringManager";
 import ApplicationDetails from "./components/ApplicationDetails";
+import AnalysisResultTabs from './pages/AnalysisResultTabs';
 
 import "./index.css";
 
@@ -30,6 +31,7 @@ const AppContent = () => {
           <Route path="/monitoring-manager" element={<MonitoringManager />} />
           <Route path="/applications" element={<ApplicationTable />} />
           <Route path="/applications/:applicationId" element={<ApplicationDetails />} />
+          <Route path="/analysis-results/:applicationId" element={<AnalysisResultTabs/>} />
         </Routes>
       </div>
     </div>
