@@ -1,32 +1,54 @@
-import React, { useEffect } from "react";
-import { Table, Button, Spin, Alert, Empty, Popconfirm } from "antd";
+// In ApplicationTable.js
+import React, { useEffect, useState } from "react";
+import { Table, Button, Spin, Alert, Empty, Popconfirm, message, Dropdown, Menu, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllApplicationsDetails } from "../actions/applicationactions";
+import { fetchAllApplicationsDetails, deleteApplication } from "../actions/applicationactions";
 import { useNavigate } from "react-router-dom";
-import "./ApplicationTable.css"; // ✅ Import the CSS file
+import Application from './Application'; // For updating application info
+import UpdateComponentModal from './UpdateComponentModal'; // New modal component for updating components
+import "./ApplicationTable.css";
 
 const ApplicationTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { applications, loading, error } = useSelector((state) => state.applications);
+  const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
+  const [selectedRecord, setSelectedRecord] = useState(null);
+
+  // State for Update Component Modal: now we store all components for the selected application
+  const [isUpdateComponentModalVisible, setIsUpdateComponentModalVisible] = useState(false);
+  const [selectedComponents, setSelectedComponents] = useState([]);
 
   useEffect(() => {
     dispatch(fetchAllApplicationsDetails());
   }, [dispatch]);
 
-  console.log("📢 Applications Data Before Rendering:", applications);
-
-  // ✅ Ensure applications is always an array
-  const safeApplications = Array.isArray(applications) ? applications : [];
-
-  // ✅ Check if API returned an error object instead of applications array
-  if (!Array.isArray(applications)) {
-    console.warn("🚨 API returned an unexpected response:", applications);
-  }
-
+  // Delete handler (unchanged)
   const handleDelete = (id) => {
-    // Dispatch the delete action; you can add additional confirmation or error handling as needed
-   // dispatch(deleteApplication(id));
+    dispatch(deleteApplication(id))
+      .unwrap()
+      .then(() => {
+        message.success("Application deleted successfully");
+      })
+      .catch((error) => {
+        message.error("Failed to delete application: " + error);
+      });
+  };
+
+  // For updating application information
+  const handleUpdateInfo = (record) => {
+    setSelectedRecord(record);
+    setIsUpdateModalVisible(true);
+  };
+
+  // For updating components: pass all components to the modal
+  const handleUpdateComponent = (record) => {
+    if (record.components && record.components.length > 0) {
+      setSelectedComponents(record.components);
+      setIsUpdateComponentModalVisible(true);
+    } else {
+      message.warning("No component available to update.");
+    }
   };
 
   const columns = [
@@ -46,7 +68,7 @@ const ApplicationTable = () => {
       key: "jobsCount",
       render: (_, record) =>
         record.components
-          ? record.components.reduce((total, component) => total + (component.jobs ? component.jobs.length : 0), 0)
+          ? record.components.reduce((total, comp) => total + (comp.jobs ? comp.jobs.length : 0), 0)
           : 0,
     },
     {
@@ -57,34 +79,48 @@ const ApplicationTable = () => {
     {
       title: "Actions",
       key: "actions",
-      render: (_, record) => (
-        <div className="table-buttons">
-          <Button
-            type="primary"
-            className="details-btn"
-            onClick={() => navigate(`/applications/${record.applicationId}`)}
-          >
-            Details
-          </Button>
-          <Button
-            type="default"
-            className="update-btn"
-            onClick={() => navigate(`/applications/update/${record.applicationId}`)}
-          >
-            Update
-          </Button>
-          <Popconfirm
-            title="Are you sure to delete this application?"
-            onConfirm={() => handleDelete(record.applicationId)}
-            okText="Yes"
-            cancelText="No"
-          >
-            <Button type="primary" danger className="delete-btn">
-              Delete
+      render: (_, record) => {
+        const updateMenu = (
+          <Menu>
+            <Menu.Item key="info" onClick={() => handleUpdateInfo(record)}>
+              Update Application Information
+            </Menu.Item>
+            <Menu.Item key="components" onClick={() => handleUpdateComponent(record)}>
+              Update Components
+            </Menu.Item>
+            <Menu.Item key="channels" onClick={() => navigate(`/applications/update/channels/${record.applicationId}`)}>
+              Update Channels
+            </Menu.Item>
+          </Menu>
+        );
+
+        return (
+          <div className="table-buttons">
+            <Button
+              type="primary"
+              className="details-btn"
+              onClick={() => navigate(`/applications/${record.applicationId}`)}
+            >
+              Details
             </Button>
-          </Popconfirm>
-        </div>
-      ),
+            <Dropdown overlay={updateMenu}>
+              <Button type="default" className="update-btn">
+                Update
+              </Button>
+            </Dropdown>
+            <Popconfirm
+              title="Are you sure to delete this application?"
+              onConfirm={() => handleDelete(record.applicationId)}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button type="primary" danger className="delete-btn">
+                Delete
+              </Button>
+            </Popconfirm>
+          </div>
+        );
+      },
     },
   ];
 
@@ -95,17 +131,58 @@ const ApplicationTable = () => {
     <div className="application-table-container">
       <h2 className="table-title">📊 Application Overview</h2>
       
-      {/* ✅ Show "No Data" Message If Applications is Empty */}
-      {safeApplications.length === 0 ? (
+      {applications && applications.length === 0 ? (
         <div className="no-data-container">
           <Empty description="No Applications Available" />
         </div>
       ) : (
         <Table 
           columns={columns} 
-          dataSource={safeApplications} 
+          dataSource={applications} 
           rowKey="applicationId" 
           pagination={{ pageSize: 5 }} 
+        />
+      )}
+
+      {/* Modal for updating application information */}
+      <Modal
+        title="Update Application Information"
+        visible={isUpdateModalVisible}
+        footer={null}
+        onCancel={() => {
+          setIsUpdateModalVisible(false);
+          setSelectedRecord(null);
+        }}
+      >
+        {selectedRecord && (
+          <Application 
+            isUpdate={true}
+            initialData={{
+              applicationName: selectedRecord.applicationName,
+              description: selectedRecord.description,
+              trial: selectedRecord.trial,
+              responsible: selectedRecord.responsible,
+              contact: selectedRecord.contact,
+              type: selectedRecord.type,
+              date: selectedRecord.date,
+            }}
+            onClose={() => {
+              setIsUpdateModalVisible(false);
+              setSelectedRecord(null);
+            }}
+          />
+        )}
+      </Modal>
+
+      {/* Modal for updating components */}
+      {isUpdateComponentModalVisible && selectedComponents && selectedComponents.length > 0 && (
+        <UpdateComponentModal 
+          visible={isUpdateComponentModalVisible}
+          onClose={() => {
+            setIsUpdateComponentModalVisible(false);
+            setSelectedComponents([]);
+          }}
+          components={selectedComponents}
         />
       )}
     </div>
