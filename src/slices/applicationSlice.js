@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAllApplicationsDetails, fetchApplications, createApplication, getApplicationInformation } from '../actions/applicationactions';
+import { fetchAllApplicationsDetails, fetchApplications, createApplication, getApplicationInformation, deleteApplication } from '../actions/applicationactions';
 
 const applicationSlice = createSlice({
   name: 'applications',
@@ -67,7 +67,22 @@ const applicationSlice = createSlice({
         console.error("❌ Create Application Failed:", action.payload);
         state.status = 'failed';
         state.error = action.payload || 'Failed to create application';
+      })
+        // Delete Application
+      .addCase(deleteApplication.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteApplication.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        // Assuming each application has an 'id' property, remove the deleted application.
+        const deletedId = action.meta.arg;
+        state.applications = state.applications.filter(app => app.applicationId !== deletedId);
+      })
+      .addCase(deleteApplication.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Failed to delete application';
       });
+
   }
 });
 

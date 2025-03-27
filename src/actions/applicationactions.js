@@ -60,3 +60,16 @@ export const createApplication = createAsyncThunk(
       }
     }
   );
+
+// Delete an application by ID
+export const deleteApplication = createAsyncThunk(
+  'applications/deleteApplication',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(process.env.REACT_APP_DEV_URL + `applications/${id}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
