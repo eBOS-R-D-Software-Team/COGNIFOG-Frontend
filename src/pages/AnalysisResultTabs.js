@@ -9,6 +9,9 @@ import './AnalysisResultTabs.css';
 import success from '../images/success.png';
 import failure from '../images/failure.png';
 import hardware from '../images/hardware.png';
+import ClusterDiagram from '../components/ClusterDiagram';
+import InfrastructureTable from '../components/InfrastructureTable';
+import clusterData from '../data/nodes.json';
 
 const arrayBufferToBase64 = (bufferObj) => {
   if (!bufferObj || !bufferObj.data) return '';
@@ -142,39 +145,10 @@ const AnalysisResultTabs = () => {
         <div className="hardware-flex-container">
           <div className="infrastructure-card">
             <div className="infrastructure-title">Infrastructure</div>
-            <table className="infrastructure-table">
-              <thead>
-                <tr>
-                  <th>Node Name</th>
-                  <th>Type</th>
-                  <th>Static Metrics</th>
-                  <th>Dynamic Metrics</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Node 1</td>
-                  <td>Type 1</td>
-                  <td>Static Metric 1</td>
-                  <td>Dynamic Metric 1</td>
-                </tr>
-                <tr>
-                  <td>Node 2</td>
-                  <td>Type 2</td>
-                  <td>Static Metric 2</td>
-                  <td>Dynamic Metric 2</td>
-                </tr>
-                <tr>
-                  <td>Node 3</td>
-                  <td>Type 3</td>
-                  <td>Static Metric 3</td>
-                  <td>Dynamic Metric 3</td>
-                </tr>
-              </tbody>
-            </table>
+            <InfrastructureTable data={clusterData} />
           </div>
           <div className="hardware-image-container">
-            <img src={hardware} alt="Hardware" className="hardware-image" />
+          <ClusterDiagram data={clusterData} />
           </div>
         </div>
         <div className="button-group">

@@ -1,0 +1,486 @@
+{
+	"master1": {
+		"nodes": {
+			"k3s-master1": {
+				"id": "k3s-master1",
+				"cpuArchitecture": "x86_64",
+				"resources": {
+					"memoryInBytes": 4109787136
+				},
+				"available_resources": {
+					"memoryInBytes": 1140690944
+				}
+			}
+		},
+		"pods": {
+			"aggregator-76cd75dc4d-mqvgf": {
+				"name": "aggregator-76cd75dc4d-mqvgf",
+				"ip": "10.42.0.81",
+				"container": {
+					"aggregator": {
+						"name": "aggregator"
+					}
+				}
+			},
+			"cattle-cluster-agent-7c584c46c7-54sv4": {
+				"name": "cattle-cluster-agent-7c584c46c7-54sv4",
+				"ip": "10.42.0.89",
+				"container": {
+					"cluster-register": {
+						"name": "cluster-register"
+					}
+				}
+			},
+			"cluster-manager-8555665fdc-q9zhh": {
+				"name": "cluster-manager-8555665fdc-q9zhh",
+				"ip": "10.42.0.84",
+				"container": {
+					"registration-operator": {
+						"name": "registration-operator"
+					}
+				}
+			},
+			"cluster-manager-addon-manager-controller-ff6dc4fc6-xwhkm": {
+				"name": "cluster-manager-addon-manager-controller-ff6dc4fc6-xwhkm",
+				"ip": "10.42.0.80",
+				"container": {
+					"addon-manager-controller": {
+						"name": "addon-manager-controller"
+					}
+				}
+			},
+			"cluster-manager-placement-controller-785658b966-h74wq": {
+				"name": "cluster-manager-placement-controller-785658b966-h74wq",
+				"ip": "10.42.0.79",
+				"container": {
+					"placement-controller": {
+						"name": "placement-controller"
+					}
+				}
+			},
+			"cluster-manager-registration-controller-b8bcc49d-mbv8m": {
+				"name": "cluster-manager-registration-controller-b8bcc49d-mbv8m",
+				"ip": "10.42.0.85",
+				"container": {
+					"hub-registration-controller": {
+						"name": "hub-registration-controller"
+					}
+				}
+			},
+			"cluster-manager-registration-webhook-7f9d846d55-xplsg": {
+				"name": "cluster-manager-registration-webhook-7f9d846d55-xplsg",
+				"ip": "10.42.0.82",
+				"container": {
+					"cluster-manager-webhook": {
+						"name": "cluster-manager-webhook"
+					}
+				}
+			},
+			"cluster-manager-work-webhook-68786c98d-c8nz5": {
+				"name": "cluster-manager-work-webhook-68786c98d-c8nz5",
+				"ip": "10.42.0.87",
+				"container": {
+					"cluster-manager-webhook": {
+						"name": "cluster-manager-webhook"
+					}
+				}
+			},
+			"coredns-597584b69b-g8l8q": {
+				"name": "coredns-597584b69b-g8l8q",
+				"ip": "10.42.0.92",
+				"container": {
+					"coredns": {
+						"name": "coredns"
+					}
+				}
+			},
+			"fleet-agent-5575f7b7d5-rm6qr": {
+				"name": "fleet-agent-5575f7b7d5-rm6qr",
+				"ip": "10.42.0.74",
+				"container": {
+					"fleet-agent": {
+						"name": "fleet-agent"
+					}
+				}
+			},
+			"local-path-provisioner-79f67d76f8-8l6pq": {
+				"name": "local-path-provisioner-79f67d76f8-8l6pq",
+				"ip": "10.42.0.73",
+				"container": {
+					"local-path-provisioner": {
+						"name": "local-path-provisioner"
+					}
+				}
+			},
+			"metrics-server-5f9f776df5-2qpch": {
+				"name": "metrics-server-5f9f776df5-2qpch",
+				"ip": "10.42.0.72",
+				"container": {
+					"metrics-server": {
+						"name": "metrics-server"
+					}
+				}
+			},
+			"monitoring-agent-kepler-8gpsq": {
+				"name": "monitoring-agent-kepler-8gpsq",
+				"ip": "192.168.101.2",
+				"container": {
+					"kepler-exporter": {
+						"name": "kepler-exporter"
+					}
+				}
+			},
+			"monitoring-agent-kube-prom-blackbox-exporter-5c79cb5766-g5hqj": {
+				"name": "monitoring-agent-kube-prom-blackbox-exporter-5c79cb5766-g5hqj",
+				"ip": "10.42.0.103",
+				"container": {
+					"blackbox-exporter": {
+						"name": "blackbox-exporter"
+					}
+				}
+			},
+			"monitoring-agent-kube-prom-operator-6f5b6b6f79-nd7fx": {
+				"name": "monitoring-agent-kube-prom-operator-6f5b6b6f79-nd7fx",
+				"ip": "10.42.0.105",
+				"container": {
+					"prometheus-operator": {
+						"name": "prometheus-operator"
+					}
+				}
+			},
+			"monitoring-agent-kube-state-metrics-5777cf58c5-z2xl2": {
+				"name": "monitoring-agent-kube-state-metrics-5777cf58c5-z2xl2",
+				"ip": "10.42.0.104",
+				"container": {
+					"kube-state-metrics": {
+						"name": "kube-state-metrics"
+					}
+				}
+			},
+			"monitoring-agent-node-exporter-hfbcg": {
+				"name": "monitoring-agent-node-exporter-hfbcg",
+				"ip": "192.168.101.2",
+				"container": {
+					"node-exporter": {
+						"name": "node-exporter"
+					}
+				}
+			},
+			"monitoring-manager-grafana-6b478675b6-5b6qw": {
+				"name": "monitoring-manager-grafana-6b478675b6-5b6qw",
+				"ip": "10.42.0.71",
+				"container": {
+					"grafana": {
+						"name": "grafana"
+					}
+				}
+			},
+			"monitoring-manager-thanos-query-df6d99b8c-lgjcr": {
+				"name": "monitoring-manager-thanos-query-df6d99b8c-lgjcr",
+				"ip": "10.42.0.77",
+				"container": {
+					"query": {
+						"name": "query"
+					}
+				}
+			},
+			"monitoring-manager-thanos-query-frontend-67cdd997d5-d8bgh": {
+				"name": "monitoring-manager-thanos-query-frontend-67cdd997d5-d8bgh",
+				"ip": "10.42.0.76",
+				"container": {
+					"query-frontend": {
+						"name": "query-frontend"
+					}
+				}
+			},
+			"monitoring-manager-thanos-receive-0": {
+				"name": "monitoring-manager-thanos-receive-0",
+				"ip": "10.42.0.93",
+				"container": {
+					"receive": {
+						"name": "receive"
+					}
+				}
+			},
+			"prometheus-monitoring-agent-kube-prom-prometheus-0": {
+				"name": "prometheus-monitoring-agent-kube-prom-prometheus-0",
+				"ip": "10.42.0.106",
+				"container": {
+					"config-reloader": {
+						"name": "config-reloader"
+					},
+					"prometheus": {
+						"name": "prometheus"
+					}
+				}
+			},
+			"svclb-traefik-19739950-gcqsr": {
+				"name": "svclb-traefik-19739950-gcqsr",
+				"ip": "10.42.1.62",
+				"container": {
+					"lb-tcp-443": {
+						"name": "lb-tcp-443"
+					},
+					"lb-tcp-80": {
+						"name": "lb-tcp-80"
+					}
+				}
+			},
+			"svclb-traefik-19739950-hhndw": {
+				"name": "svclb-traefik-19739950-hhndw",
+				"ip": "10.42.2.232",
+				"container": {
+					"lb-tcp-443": {
+						"name": "lb-tcp-443"
+					},
+					"lb-tcp-80": {
+						"name": "lb-tcp-80"
+					}
+				}
+			},
+			"svclb-traefik-19739950-t7dkp": {
+				"name": "svclb-traefik-19739950-t7dkp",
+				"ip": "10.42.0.70",
+				"container": {
+					"lb-tcp-443": {
+						"name": "lb-tcp-443"
+					},
+					"lb-tcp-80": {
+						"name": "lb-tcp-80"
+					}
+				}
+			},
+			"traefik-66c46d954f-5nqrz": {
+				"name": "traefik-66c46d954f-5nqrz",
+				"ip": "10.42.0.88",
+				"container": {
+					"traefik": {
+						"name": "traefik"
+					}
+				}
+			}
+		}
+	},
+	"master3": {
+		"nodes": {
+			"k3s-master3": {
+				"id": "k3s-master3",
+				"cpuArchitecture": "x86_64",
+				"resources": {
+					"memoryInBytes": 4109778944
+				},
+				"available_resources": {
+					"memoryInBytes": 1965539328
+				}
+			},
+			"k3s-worker3-1": {
+				"id": "k3s-worker3-1",
+				"cpuArchitecture": "x86_64",
+				"resources": {
+					"memoryInBytes": 3120324608
+				},
+				"available_resources": {
+					"memoryInBytes": 2314420224
+				}
+			}
+		},
+		"pods": {
+			"coredns-ccb96694c-2glwc": {
+				"name": "coredns-ccb96694c-2glwc",
+				"ip": "10.42.2.27",
+				"container": {
+					"coredns": {
+						"name": "coredns"
+					}
+				}
+			},
+			"helm-install-traefik-crd-8mcs4": {
+				"name": "helm-install-traefik-crd-8mcs4",
+				"container": {
+					"helm": {
+						"name": "helm"
+					}
+				}
+			},
+			"helm-install-traefik-s2ghh": {
+				"name": "helm-install-traefik-s2ghh",
+				"container": {
+					"helm": {
+						"name": "helm"
+					}
+				}
+			},
+			"klusterlet-67d5bf4ddf-28blx": {
+				"name": "klusterlet-67d5bf4ddf-28blx",
+				"ip": "10.42.0.58",
+				"container": {
+					"klusterlet": {
+						"name": "klusterlet"
+					}
+				}
+			},
+			"klusterlet-67d5bf4ddf-k8784": {
+				"name": "klusterlet-67d5bf4ddf-k8784",
+				"ip": "10.42.2.36",
+				"container": {
+					"klusterlet": {
+						"name": "klusterlet"
+					}
+				}
+			},
+			"klusterlet-67d5bf4ddf-vgs9h": {
+				"name": "klusterlet-67d5bf4ddf-vgs9h",
+				"ip": "10.42.0.59",
+				"container": {
+					"klusterlet": {
+						"name": "klusterlet"
+					}
+				}
+			},
+			"klusterlet-registration-agent-7879f56d66-g8bvh": {
+				"name": "klusterlet-registration-agent-7879f56d66-g8bvh",
+				"ip": "10.42.0.60",
+				"container": {
+					"registration-controller": {
+						"name": "registration-controller"
+					}
+				}
+			},
+			"klusterlet-work-agent-58f546d866-8dk2h": {
+				"name": "klusterlet-work-agent-58f546d866-8dk2h",
+				"ip": "10.42.2.37",
+				"container": {
+					"klusterlet-manifestwork-agent": {
+						"name": "klusterlet-manifestwork-agent"
+					}
+				}
+			},
+			"local-path-provisioner-5cf85fd84d-94vwv": {
+				"name": "local-path-provisioner-5cf85fd84d-94vwv",
+				"ip": "10.42.2.25",
+				"container": {
+					"local-path-provisioner": {
+						"name": "local-path-provisioner"
+					}
+				}
+			},
+			"metrics-server-5985cbc9d7-sqmdz": {
+				"name": "metrics-server-5985cbc9d7-sqmdz",
+				"ip": "10.42.2.22",
+				"container": {
+					"metrics-server": {
+						"name": "metrics-server"
+					}
+				}
+			},
+			"monitoring-agent-kepler-r782q": {
+				"name": "monitoring-agent-kepler-r782q",
+				"ip": "192.168.101.116",
+				"container": {
+					"kepler-exporter": {
+						"name": "kepler-exporter"
+					}
+				}
+			},
+			"monitoring-agent-kepler-xlfmm": {
+				"name": "monitoring-agent-kepler-xlfmm",
+				"ip": "192.168.101.115",
+				"container": {
+					"kepler-exporter": {
+						"name": "kepler-exporter"
+					}
+				}
+			},
+			"monitoring-agent-kube-prom-blackbox-exporter-589d5f8fb6-45dwh": {
+				"name": "monitoring-agent-kube-prom-blackbox-exporter-589d5f8fb6-45dwh",
+				"ip": "10.42.0.39",
+				"container": {
+					"blackbox-exporter": {
+						"name": "blackbox-exporter"
+					}
+				}
+			},
+			"monitoring-agent-kube-prom-operator-7c8446d77f-7zwx7": {
+				"name": "monitoring-agent-kube-prom-operator-7c8446d77f-7zwx7",
+				"ip": "10.42.2.39",
+				"container": {
+					"prometheus-operator": {
+						"name": "prometheus-operator"
+					}
+				}
+			},
+			"monitoring-agent-kube-state-metrics-6d56654447-b6hvt": {
+				"name": "monitoring-agent-kube-state-metrics-6d56654447-b6hvt",
+				"ip": "10.42.2.38",
+				"container": {
+					"kube-state-metrics": {
+						"name": "kube-state-metrics"
+					}
+				}
+			},
+			"monitoring-agent-node-exporter-9lkn6": {
+				"name": "monitoring-agent-node-exporter-9lkn6",
+				"ip": "192.168.101.115",
+				"container": {
+					"node-exporter": {
+						"name": "node-exporter"
+					}
+				}
+			},
+			"monitoring-agent-node-exporter-xdplh": {
+				"name": "monitoring-agent-node-exporter-xdplh",
+				"ip": "192.168.101.116",
+				"container": {
+					"node-exporter": {
+						"name": "node-exporter"
+					}
+				}
+			},
+			"prometheus-monitoring-agent-kube-prom-prometheus-0": {
+				"name": "prometheus-monitoring-agent-kube-prom-prometheus-0",
+				"ip": "10.42.0.62",
+				"container": {
+					"config-reloader": {
+						"name": "config-reloader"
+					},
+					"prometheus": {
+						"name": "prometheus"
+					}
+				}
+			},
+			"svclb-traefik-8c78ba23-5vsng": {
+				"name": "svclb-traefik-8c78ba23-5vsng",
+				"ip": "10.42.2.21",
+				"container": {
+					"lb-tcp-443": {
+						"name": "lb-tcp-443"
+					},
+					"lb-tcp-80": {
+						"name": "lb-tcp-80"
+					}
+				}
+			},
+			"svclb-traefik-8c78ba23-l7mpd": {
+				"name": "svclb-traefik-8c78ba23-l7mpd",
+				"ip": "10.42.0.19",
+				"container": {
+					"lb-tcp-443": {
+						"name": "lb-tcp-443"
+					},
+					"lb-tcp-80": {
+						"name": "lb-tcp-80"
+					}
+				}
+			},
+			"traefik-57b79cf995-rk6nz": {
+				"name": "traefik-57b79cf995-rk6nz",
+				"ip": "10.42.2.23",
+				"container": {
+					"traefik": {
+						"name": "traefik"
+					}
+				}
+			}
+		}
+	}
+}

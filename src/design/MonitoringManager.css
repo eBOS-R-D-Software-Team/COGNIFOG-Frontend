@@ -1,78 +1,179 @@
 .monitoring-container {
-  padding: 20px;
-  background-color: #f9fafb;
+  padding: 40px 20px;
+  background: linear-gradient(to right, #f1f5f9, #f8fafc);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
 .header-section {
-  text-align: center;
-  margin-bottom: 20px;
-  width: 80%;
+  width: 90%;
+  max-width: 900px;
+  margin-bottom: 40px;
+  padding: 35px 40px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  gap: 20px;
+  text-align: left;
+  transition: 0.3s ease;
 }
 
-.input-box, .description-box {
-  width: 100%;
-  max-width: 600px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.header-section h2 {
+  color: #6366f1;;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
   text-align: center;
-  margin-bottom: 10px;
 }
+
+.header-section h3 {
+  color: #1f2937;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+/* Inputs */
+.input-box,
+.description-box {
+  color: #1f2937; 
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-box:focus,
+.description-box:focus {
+  outline: none;
+  border-color: #6366f1;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* Dropdown styling */
+.dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dropdown label {
+  color: #374151;
+}
+
+.dropdown select {
+  color: #1f2937; 
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dropdown select:hover,
+.dropdown select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
 
 .charts-section {
   display: flex;
   justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
-  width: 90%;
+  gap: 30px;
+  width: 95%;
 }
 
 .chart-card {
   background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
   width: 100%;
   max-width: 400px;
-  text-align: center;
+  height: 380px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.network-visualization {
-  text-align: center;
-  margin-top: 30px;
-  width: 80%;
-}
-
-.network-image {
-  max-width: 100%;
-  height: auto;
-}
-
-h2 {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-h3 {
-  color: #1f2937;
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.chart-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
 }
 
 .chart-card h3 {
   font-size: 18px;
-  font-weight: bold;
-  color: #374151;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 14px;
 }
+
+.chart-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+  height: 280px;
+}
+
+.network-visualization {
+  text-align: center;
+  margin-top: 40px;
+  width: 85%;
+}
+
+.network-image {
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.infrastructure-button-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999; /* High enough to stay on top */
+  pointer-events: auto;
+}
+
+.infrastructure-button {
+  background-color: #6366f1;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.infrastructure-button:hover {
+  background-color: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+}
+
+.infrastructure-button:active {
+  transform: scale(0.98);
+}
+
